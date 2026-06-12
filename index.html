@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zubair Jamil — Backend Lead</title>
+<meta name="description" content="Backend Lead and Senior Software Engineer — 5+ years building .NET 9 microservices, Web APIs, and secure, well-governed backend systems." />
+
+<!-- Fonts: Space Grotesk (display) · IBM Plex Sans (body) · IBM Plex Mono (system metadata) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:        #0D1320;
+    --bg-2:      #090E18;
+    --surface:   #131A29;
+    --surface-2: #182133;
+    --line:      #232F45;
+    --line-soft: #1A2334;
+    --text:      #EAEFF6;
+    --text-2:    #AEB8CC;
+    --muted:     #8793AB;
+    --faint:     #5E6B84;
+    --accent:        #CDA15A;
+    --accent-bright: #E6BE74;
+    --accent-tint:   rgba(205,161,90,0.10);
+
+    --display: "Space Grotesk", system-ui, sans-serif;
+    --body:    "IBM Plex Sans", system-ui, sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+    --maxw: 1080px;
+    --pad: clamp(20px, 5vw, 56px);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--accent); color:#0B0F18; }
+
+  :focus-visible{
+    outline:2px solid var(--accent-bright);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--pad); }
+
+  /* ---------- section scaffolding ---------- */
+  .section{ padding-block:clamp(64px, 10vw, 116px); position:relative; }
+  .section--alt{ background:var(--bg-2); border-block:1px solid var(--line-soft); }
+  section[id]{ scroll-margin-top:84px; }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex; align-items:center; gap:12px;
+    margin:0 0 22px;
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:1px; background:var(--accent); opacity:.7;
+  }
+  .section-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.55rem, 3.4vw, 2.15rem);
+    letter-spacing:-.02em;
+    line-height:1.15;
+    margin:0 0 8px;
+  }
+  .lede{
+    color:var(--text-2);
+    max-width:60ch;
+    font-size:1.02rem;
+    margin:0 0 44px;
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,19,32,.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px var(--pad);
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .brand{
+    font-family:var(--display); font-weight:600; font-size:1.02rem;
+    letter-spacing:-.01em; display:flex; align-items:center; gap:10px;
+  }
+  .brand .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-tint); }
+  .nav-links{ display:flex; gap:26px; }
+  .nav-links a{
+    font-family:var(--mono); font-size:.8rem; color:var(--muted);
+    letter-spacing:.02em; transition:color .18s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{
+    font-family:var(--mono); font-size:.8rem;
+    border:1px solid var(--line); color:var(--text);
+    padding:8px 16px; border-radius:6px;
+    transition:border-color .18s ease, color .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ border-color:var(--accent); color:var(--accent-bright); }
+
+  /* ---------- hero ---------- */
+  .hero{ position:relative; overflow:hidden; padding-block:clamp(76px, 13vw, 150px) clamp(56px, 9vw, 104px); }
+  .hero-grid{
+    position:absolute; inset:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:radial-gradient(120% 80% at 15% 0%, #000 0%, transparent 62%);
+            mask-image:radial-gradient(120% 80% at 15% 0%, #000 0%, transparent 62%);
+    opacity:.5;
+  }
+  .hero-inner{ position:relative; }
+  .hero .tag{
+    font-family:var(--mono); font-size:.78rem; letter-spacing:.12em;
+    color:var(--muted); margin:0 0 26px; display:flex; flex-wrap:wrap; gap:10px 16px;
+  }
+  .hero .tag b{ color:var(--accent); font-weight:500; }
+  .hero h1{
+    font-family:var(--display); font-weight:600;
+    font-size:clamp(2.3rem, 6.2vw, 4.3rem);
+    line-height:1.05; letter-spacing:-.03em;
+    margin:0 0 28px; max-width:18ch;
+  }
+  .hero h1 .em{ color:var(--accent); }
+  .stack{
+    font-family:var(--mono); font-size:clamp(.82rem,1.5vw,.95rem);
+    color:var(--text-2); letter-spacing:.02em;
+    display:flex; flex-wrap:wrap; gap:8px 0; align-items:center; margin:0 0 40px;
+  }
+  .stack span{ white-space:nowrap; }
+  .stack .sep{ color:var(--faint); padding:0 12px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{
+    font-family:var(--mono); font-size:.85rem;
+    padding:12px 22px; border-radius:7px; transition:all .18s ease; cursor:pointer;
+  }
+  .btn-primary{ background:var(--accent); color:#0B0F18; font-weight:500; }
+  .btn-primary:hover{ background:var(--accent-bright); transform:translateY(-1px); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent-bright); }
+
+  /* hero load reveal */
+  .reveal{ opacity:0; transform:translateY(14px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .reveal.d1{ animation-delay:.05s; }
+  .reveal.d2{ animation-delay:.16s; }
+  .reveal.d3{ animation-delay:.27s; }
+  .reveal.d4{ animation-delay:.38s; }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+
+  /* ---------- about ---------- */
+  .about-body p{ font-size:1.08rem; color:var(--text-2); max-width:64ch; margin:0 0 18px; }
+  .about-body p.closing{ color:var(--text); font-family:var(--display); font-weight:500; font-size:1.18rem; line-height:1.5; letter-spacing:-.01em; }
+  .about-body .closing .em{ color:var(--accent); }
+
+  /* ---------- work ---------- */
+  .work-item{
+    display:grid; grid-template-columns:300px 1fr; gap:48px;
+    padding:40px 0; border-top:1px solid var(--line);
+  }
+  .work-item:last-child{ border-bottom:1px solid var(--line); }
+  .work-meta .idx{ font-family:var(--mono); font-size:.74rem; color:var(--faint); letter-spacing:.18em; }
+  .work-meta h3{
+    font-family:var(--display); font-weight:600; font-size:1.4rem;
+    letter-spacing:-.015em; line-height:1.2; margin:10px 0 14px;
+  }
+  .kv{ font-family:var(--mono); font-size:.78rem; color:var(--muted); line-height:1.9; }
+  .kv .k{ color:var(--faint); }
+  .kv .role{ color:var(--accent); }
+  .stack-chips{ display:flex; flex-wrap:wrap; gap:7px; margin-top:18px; }
+  .chip{
+    font-family:var(--mono); font-size:.72rem; color:var(--text-2);
+    border:1px solid var(--line); border-radius:5px; padding:4px 9px; background:var(--surface);
+  }
+  .work-body ul{ list-style:none; margin:0; padding:0; }
+  .work-body li{ position:relative; padding-left:24px; margin-bottom:14px; color:var(--text-2); font-size:1rem; }
+  .work-body li::before{
+    content:""; position:absolute; left:0; top:11px; width:11px; height:1px; background:var(--accent);
+  }
+  .work-body li b{ color:var(--text); font-weight:600; }
+  .note{ font-family:var(--mono); font-size:.74rem; color:var(--faint); margin-top:16px; }
+
+  /* ---------- experience ---------- */
+  .timeline{ border-left:1px solid var(--line); margin-left:6px; }
+  .tl-item{ position:relative; padding:0 0 34px 30px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-5px; top:6px; width:9px; height:9px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .tl-item.current::before{ background:var(--accent); }
+  .tl-date{ font-family:var(--mono); font-size:.76rem; color:var(--accent); letter-spacing:.04em; }
+  .tl-role{ font-family:var(--display); font-weight:600; font-size:1.12rem; margin:6px 0 2px; letter-spacing:-.01em; }
+  .tl-co{ font-family:var(--mono); font-size:.82rem; color:var(--muted); }
+  .tl-desc{ color:var(--text-2); font-size:.97rem; margin-top:8px; max-width:60ch; }
+
+  /* ---------- leadership ---------- */
+  .lead-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px 28px; margin-top:8px; }
+  .lead-item{ display:flex; gap:14px; align-items:flex-start; padding:6px 0; }
+  .lead-item .mk{ font-family:var(--mono); color:var(--accent); font-size:.85rem; line-height:1.7; flex:none; }
+  .lead-item p{ margin:0; color:var(--text-2); font-size:1rem; }
+  .lead-item p b{ color:var(--text); font-weight:600; }
+
+  /* ---------- skills ---------- */
+  .skill-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px 40px; }
+  .skill-group h4{
+    font-family:var(--mono); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 14px; padding-bottom:10px; border-bottom:1px solid var(--line-soft);
+  }
+  .skill-group .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+
+  /* ---------- certifications ---------- */
+  .cert-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .cert{
+    border:1px solid var(--line); border-radius:9px; padding:18px 20px; background:var(--surface);
+    transition:border-color .18s ease, transform .18s ease;
+  }
+  .cert:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .cert .issuer{ font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  .cert h4{ font-family:var(--display); font-weight:600; font-size:1.02rem; margin:8px 0 0; letter-spacing:-.01em; line-height:1.3; }
+  .cert .code{ font-family:var(--mono); font-size:.76rem; color:var(--muted); margin-top:4px; }
+
+  /* ---------- education ---------- */
+  .edu-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:44px; }
+  .edu-item{ padding:18px 0; border-top:1px solid var(--line); }
+  .edu-item:first-child{ border-top:none; padding-top:0; }
+  .edu-date{ font-family:var(--mono); font-size:.76rem; color:var(--accent); letter-spacing:.04em; }
+  .edu-deg{ font-family:var(--display); font-weight:600; font-size:1.12rem; margin:6px 0 2px; letter-spacing:-.01em; }
+  .edu-school{ font-family:var(--mono); font-size:.82rem; color:var(--muted); }
+  .edu-side{ display:flex; flex-direction:column; gap:24px; }
+  .edu-side-block h4{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid var(--line-soft);
+  }
+  .edu-side-block p{ margin:0; color:var(--text-2); font-size:.97rem; }
+
+  /* ---------- contact ---------- */
+  .contact-card{
+    border:1px solid var(--line); border-radius:14px; padding:clamp(28px,5vw,52px);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  }
+  .contact-card h2{ font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3.6vw,2.3rem); letter-spacing:-.02em; margin:0 0 14px; }
+  .contact-card p{ color:var(--text-2); max-width:52ch; margin:0 0 28px; }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .contact-phone{ font-family:var(--mono); font-size:.82rem; color:var(--muted); margin-top:20px; }
+  .contact-phone .k{ color:var(--faint); }
+
+  /* ---------- footer ---------- */
+  .footer{ border-top:1px solid var(--line-soft); padding-block:30px; }
+  .footer-inner{ display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; }
+  .footer span{ font-family:var(--mono); font-size:.76rem; color:var(--faint); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:780px){
+    .work-item{ grid-template-columns:1fr; gap:22px; }
+    .lead-grid{ grid-template-columns:1fr; }
+    .skill-grid{ grid-template-columns:1fr; }
+    .cert-grid{ grid-template-columns:1fr; }
+    .edu-grid{ grid-template-columns:1fr; gap:32px; }
+  }
+  @media (max-width:680px){
+    .nav-links{ display:none; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ animation:none; opacity:1; transform:none; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top"><span class="dot"></span> Zubair Jamil</a>
+      <nav class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#education">Education</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="tag reveal d1">
+        <span><b>Backend Lead</b></span>
+        <span>Senior Software Engineer</span>
+        <span>5+ years</span>
+        <span>Lahore, PK</span>
+      </p>
+      <h1 class="reveal d2">I design and ship <span class="em">production-grade .NET backends</span> for complex, real-world systems.</h1>
+      <p class="stack reveal d3">
+        <span>ASP.NET&nbsp;Core</span><span class="sep">/</span>
+        <span>.NET&nbsp;9</span><span class="sep">/</span>
+        <span>Microservices</span><span class="sep">/</span>
+        <span>Clean&nbsp;Architecture</span><span class="sep">/</span>
+        <span>OpenShift</span>
+      </p>
+      <div class="hero-actions reveal d4">
+        <a class="btn btn-primary" href="#work">View selected work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section--alt" id="about">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <div class="about-body">
+        <p>I'm a Backend Lead based in Lahore, Pakistan with 5+ years of experience building and shipping .NET backend systems, Web APIs, and microservices across financial, government, and enterprise domains. I've worked on everything from architecture and API design to security hardening, API governance, release coordination, and cross-team delivery — always on the backend, always owning the outcome.</p>
+        <p class="closing">I care about code that's clean, systems that are <span class="em">honest</span>, and teams that actually ship.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Four systems, end to end.</h2>
+      <p class="lede">The systems I've owned and delivered — across government operations, trading, lending, and enterprise HR integration.</p>
+
+      <!-- 01 -->
+      <article class="work-item">
+        <div class="work-meta">
+          <span class="idx">01</span>
+          <h3>MYMOD Platform</h3>
+          <div class="kv">
+            <div><span class="k">role</span> &nbsp;<span class="role">Backend Lead</span></div>
+            <div><span class="k">when</span> &nbsp;2025 — Present</div>
+            <div><span class="k">domain</span> &nbsp;Government Sector</div>
+            <div><span class="k">client</span> &nbsp;Almaaber</div>
+          </div>
+          <div class="stack-chips">
+            <span class="chip">.NET 9</span><span class="chip">ASP.NET Core</span>
+            <span class="chip">Microservices</span><span class="chip">EF Core</span>
+            <span class="chip">SQL Server</span><span class="chip">Docker</span>
+            <span class="chip">OpenShift</span><span class="chip">GitLab CI/CD</span>
+            <span class="chip">Azure</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <ul>
+            <li>Lead the backend of an enterprise <b>.NET 9 microservices platform on OpenShift</b> serving government operations across multiple integration teams.</li>
+            <li>Drove the <b>RS256 JWT certificate-based auth migration</b>, replacing HS256 across all services following a formal cybersecurity audit.</li>
+            <li>Defined and enforced <b>Swagger/OpenAPI governance</b> — validation centralized in FluentValidation, Swagger kept documentation-only — across backend and integration teams.</li>
+            <li>Owned <b>release coordination</b> across dev, UAT, and preprod, aligning Backend, DevOps, Integration, QA, and Product stakeholders.</li>
+            <li>Led SonarQube quality enforcement, <b>remediating 15+ critical and high issues</b>, and authored release-management workflows, deployment guides, and engineering standards. Mentored engineers and led architecture and API-design reviews.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="work-item">
+        <div class="work-meta">
+          <span class="idx">02</span>
+          <h3>Metal Trading System</h3>
+          <div class="kv">
+            <div><span class="k">role</span> &nbsp;<span class="role">de facto Technical Lead</span></div>
+            <div><span class="k">when</span> &nbsp;2024 — 2025</div>
+            <div><span class="k">domain</span> &nbsp;Trading</div>
+          </div>
+          <div class="stack-chips">
+            <span class="chip">.NET Core</span><span class="chip">Angular 14</span>
+            <span class="chip">SQL Server</span><span class="chip">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <ul>
+            <li>Served as <b>de facto Technical Lead</b> on OPS-Q, the order processing and management platform for a metal trading business.</li>
+            <li><b>Established the backend service architecture</b> and guided implementation patterns for the team.</li>
+            <li>Delivered automated trade workflows, real-time order tracking, and accurate transaction records.</li>
+            <li>Contributed <b>reusable libraries</b>, drove cross-team alignment on design decisions, and delivered features in agile sprints across multiple microservices.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="work-item">
+        <div class="work-meta">
+          <span class="idx">03</span>
+          <h3>Mortgage Lending &amp; Management System</h3>
+          <div class="kv">
+            <div><span class="k">role</span> &nbsp;<span class="role">Software Engineer</span></div>
+            <div><span class="k">when</span> &nbsp;2022 — 2023</div>
+            <div><span class="k">domain</span> &nbsp;FinTech / Lending</div>
+          </div>
+          <div class="stack-chips">
+            <span class="chip">ASP.NET Core Web API</span><span class="chip">ASP.NET MVC</span>
+            <span class="chip">WebForms</span><span class="chip">Angular 14</span>
+            <span class="chip">SQL Server</span><span class="chip">SSMS</span>
+            <span class="chip">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <ul>
+            <li>Built administrative modules for <b>loan payment processing</b> on a mortgage lending platform.</li>
+            <li>Developed <b>official letter-generation</b> functionality for the platform.</li>
+            <li>Set up the <b>CI/CD pipeline</b> via Azure DevOps.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="work-item">
+        <div class="work-meta">
+          <span class="idx">04</span>
+          <h3>HR Management System (HRMS)</h3>
+          <div class="kv">
+            <div><span class="k">role</span> &nbsp;<span class="role">Software Engineer</span></div>
+            <div><span class="k">when</span> &nbsp;2022 — 2023</div>
+            <div><span class="k">domain</span> &nbsp;Enterprise / HR Integration</div>
+          </div>
+          <div class="stack-chips">
+            <span class="chip">ASP.NET Core Web API</span><span class="chip">Azure</span>
+            <span class="chip">SQL Server</span><span class="chip">Angular 14</span>
+            <span class="chip">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <ul>
+            <li>Built an <b>API integration layer</b> for an HR platform, backed by Azure storage and notification services.</li>
+            <li>Integrated <b>Oracle NetSuite APIs</b> (both SOAP and REST) to streamline cross-system data exchange.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section--alt" id="experience">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h2 class="section-title">Where I've worked.</h2>
+      <p class="lede">A steady move from writing features to owning the backend.</p>
+
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-date">06/2025 — Present</div>
+          <div class="tl-role">Backend Lead</div>
+          <div class="tl-co">LogicEra · Remote</div>
+          <div class="tl-desc">Leading backend delivery for MYMOD, a .NET 9 microservices platform on OpenShift for a government-sector client — architecture, security, API governance, and multi-team release coordination.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">01/2024 — 06/2025</div>
+          <div class="tl-role">Software Engineer</div>
+          <div class="tl-co">ArhamSoft · Lahore</div>
+          <div class="tl-desc">De facto Technical Lead on OPS-Q (Metal Trading System) — established the backend service architecture, contributed reusable libraries, and delivered across multiple microservices in agile sprints.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">07/2022 — 12/2023</div>
+          <div class="tl-role">Software Engineer</div>
+          <div class="tl-co">TetraSol · Lahore</div>
+          <div class="tl-desc">Built scalable web applications with ASP.NET Core, Angular, and Azure in an offshore delivery model — including mortgage-lending modules and an HR integration layer. Contributed to CI/CD and cloud infrastructure.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">02/2021 — 03/2022</div>
+          <div class="tl-role">Software Developer</div>
+          <div class="tl-co">Eventure Solutions · Lahore</div>
+          <div class="tl-desc">Developed and maintained web applications with ASP.NET MVC, Angular, and SQL Server; improved performance across legacy and new modules in agile sprints.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="section" id="leadership">
+    <div class="wrap">
+      <p class="eyebrow">How I lead</p>
+      <h2 class="section-title">Beyond the code.</h2>
+      <p class="lede">Being a lead is mostly the work between the work. Here's what that looks like for me.</p>
+
+      <div class="lead-grid">
+        <div class="lead-item"><span class="mk">&rarr;</span><p><b>Make architecture and API-design decisions and own them.</b> The call, and the consequences, are mine.</p></div>
+        <div class="lead-item"><span class="mk">&rarr;</span><p><b>Protect the team from ambiguity.</b> I absorb unclear requirements so engineers can build with a clear target.</p></div>
+        <div class="lead-item"><span class="mk">&rarr;</span><p><b>Mentor and upskill engineers</b> through code reviews and architecture reviews — junior to senior.</p></div>
+        <div class="lead-item"><span class="mk">&rarr;</span><p><b>Define and enforce backend standards</b> — quality, security, and API governance the team can rely on.</p></div>
+        <div class="lead-item"><span class="mk">&rarr;</span><p><b>Coordinate releases across teams</b> — Backend, DevOps, Integration, QA, and Product — to unblock delivery.</p></div>
+        <div class="lead-item"><span class="mk">&rarr;</span><p><b>Push back when something's wrong</b> — including upward, when it needs saying.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section section--alt" id="skills">
+    <div class="wrap">
+      <p class="eyebrow">Skills</p>
+      <h2 class="section-title">The toolkit.</h2>
+      <p class="lede">Backend-focused, cloud-native, and tuned for clean, secure, maintainable systems.</p>
+
+      <div class="skill-grid">
+        <div class="skill-group">
+          <h4>Backend</h4>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">ASP.NET Core</span>
+            <span class="chip">.NET 9</span><span class="chip">Web APIs</span>
+            <span class="chip">REST APIs</span><span class="chip">EF Core</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Architecture</h4>
+          <div class="chips">
+            <span class="chip">Microservices</span><span class="chip">Clean Architecture</span>
+            <span class="chip">Domain-Driven Design</span><span class="chip">SOLID</span>
+            <span class="chip">API Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Security &amp; Quality</h4>
+          <div class="chips">
+            <span class="chip">JWT</span><span class="chip">RS256</span>
+            <span class="chip">FluentValidation</span><span class="chip">SonarQube</span>
+            <span class="chip">Serilog</span><span class="chip">Swagger/OpenAPI governance</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Cloud &amp; DevOps</h4>
+          <div class="chips">
+            <span class="chip">Azure</span><span class="chip">Docker</span>
+            <span class="chip">OpenShift</span><span class="chip">GitLab CI/CD</span>
+            <span class="chip">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Databases</h4>
+          <div class="chips">
+            <span class="chip">SQL Server</span><span class="chip">Azure SQL</span>
+            <span class="chip">SSMS</span><span class="chip">EF Core Migrations</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools</h4>
+          <div class="chips">
+            <span class="chip">Visual Studio</span><span class="chip">VS Code</span>
+            <span class="chip">Postman</span><span class="chip">Git</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Leadership</h4>
+          <div class="chips">
+            <span class="chip">Code Reviews</span><span class="chip">Mentorship</span>
+            <span class="chip">Release Management</span><span class="chip">Cross-Team Coordination</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certs">
+    <div class="wrap">
+      <p class="eyebrow">Certifications</p>
+      <h2 class="section-title">Verified credentials.</h2>
+      <p class="lede">Microsoft-certified across cloud development, DevOps, and the fundamentals.</p>
+
+      <div class="cert-grid">
+        <div class="cert">
+          <div class="issuer">Microsoft</div>
+          <h4>Azure Developer Associate</h4>
+          <div class="code">AZ-204 · 2024</div>
+        </div>
+        <div class="cert">
+          <div class="issuer">Microsoft</div>
+          <h4>DevOps Engineer Expert</h4>
+          <div class="code">AZ-400 · 2024</div>
+        </div>
+        <div class="cert">
+          <div class="issuer">Microsoft</div>
+          <h4>Azure Fundamentals</h4>
+          <div class="code">AZ-900 · 2024</div>
+        </div>
+        <div class="cert">
+          <div class="issuer">freeCodeCamp &amp; Microsoft</div>
+          <h4>Foundational C# with Microsoft</h4>
+          <div class="code">2024</div>
+        </div>
+        <div class="cert">
+          <div class="issuer">EVS Professional Training Institute</div>
+          <h4>Certified .NET Specialist</h4>
+          <div class="code">2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section section--alt" id="education">
+    <div class="wrap">
+      <p class="eyebrow">Education &amp; recognition</p>
+      <h2 class="section-title">Foundations.</h2>
+
+      <div class="edu-grid">
+        <div class="edu-main">
+          <div class="edu-item">
+            <div class="edu-date">2021 — 2025</div>
+            <div class="edu-deg">BS Computer Science</div>
+            <div class="edu-school">University of the Punjab · Lahore</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-date">2019 — 2021</div>
+            <div class="edu-deg">ICS — Intermediate Computer Science</div>
+            <div class="edu-school">BISE Lahore</div>
+          </div>
+        </div>
+        <aside class="edu-side">
+          <div class="edu-side-block">
+            <h4>Recognition</h4>
+            <p>Microsoft Learn Student Ambassador (MLSA) — Beta · 2025–Present</p>
+          </div>
+          <div class="edu-side-block">
+            <h4>Languages</h4>
+            <p>English — Fluent&nbsp;&nbsp;·&nbsp;&nbsp;Urdu — Native</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build something solid.</h2>
+        <p>Open to senior backend roles and select freelance work. If you've got a system that needs an owner, I'd like to hear about it.</p>
+        <div class="contact-links">
+          <!-- VERIFY: CV showed "xubairjamil@gmail.com" — used the spelling matching your GitHub handle. Confirm before publishing. -->
+          <a class="btn btn-primary" href="mailto:zubairjamil@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/ZU3AIRE" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/zubair-jamil" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="contact-phone"><span class="k">phone</span> &nbsp;+92 326 4652191</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© 2026 Zubair Jamil</span>
+      <span>Backend Lead · Senior Software Engineer</span>
+    </div>
+  </footer>
+
+</body>
+</html>
