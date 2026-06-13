@@ -265,13 +265,191 @@
   .contact-card h2{ font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3.6vw,2.3rem); letter-spacing:-.02em; margin:0 0 14px; }
   .contact-card p{ color:var(--text-2); max-width:52ch; margin:0 0 28px; }
   .contact-links{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
-  .contact-phone{ font-family:var(--mono); font-size:.82rem; color:var(--muted); margin-top:20px; }
-  .contact-phone .k{ color:var(--faint); }
+  .contact-phone{
+    display:inline-flex; align-items:center; gap:12px;
+    margin-top:28px; padding:10px 16px;
+    border:1px solid var(--line); border-radius:8px;
+    background:rgba(19,26,41,.5); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    font-family:var(--mono); font-size:.85rem; color:var(--text-2);
+    transition:border-color .18s ease, box-shadow .18s ease, color .18s ease;
+  }
+  .contact-phone:hover{ border-color:var(--accent); color:var(--text); box-shadow:0 0 20px rgba(205,161,90,.14); }
+  .contact-phone .k{
+    color:var(--accent); text-transform:uppercase; letter-spacing:.16em; font-size:.7rem;
+  }
+  .contact-phone .num{ letter-spacing:.05em; padding-left:12px; border-left:1px solid var(--line); }
 
   /* ---------- footer ---------- */
   .footer{ border-top:1px solid var(--line-soft); padding-block:30px; }
   .footer-inner{ display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; }
   .footer span{ font-family:var(--mono); font-size:.76rem; color:var(--faint); }
+
+  /* ======================================================
+     FUTURISTIC LAYER
+     ====================================================== */
+
+  /* custom scrollbar */
+  html{ scrollbar-color: var(--accent) var(--bg-2); scrollbar-width: thin; }
+  ::-webkit-scrollbar{ width:11px; }
+  ::-webkit-scrollbar-track{ background:var(--bg-2); }
+  ::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg, var(--accent), var(--accent-bright));
+    border-radius:10px; border:3px solid var(--bg-2);
+  }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--accent-bright); }
+
+  /* scroll-progress beam */
+  .scan-progress{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:linear-gradient(90deg, var(--accent), var(--accent-bright) 60%, #fff);
+    box-shadow:0 0 14px var(--accent-bright);
+    z-index:200; pointer-events:none;
+  }
+
+  /* cursor spotlight */
+  .cursor-glow{
+    position:fixed; top:0; left:0; width:560px; height:560px; border-radius:50%;
+    margin:-280px 0 0 -280px; pointer-events:none; z-index:3; opacity:0;
+    background:radial-gradient(circle, rgba(205,161,90,.12), rgba(205,161,90,.04) 45%, transparent 62%);
+    mix-blend-mode:screen; transition:opacity .4s ease;
+    will-change:transform;
+  }
+
+  /* film grain */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:150; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+
+  /* holographic headline */
+  .hero h1 .em{
+    background:linear-gradient(110deg, var(--accent) 0%, var(--accent-bright) 35%, #FFF6E6 50%, var(--accent-bright) 65%, var(--accent) 100%);
+    background-size:220% auto;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    animation:holo 7s linear infinite;
+    filter:drop-shadow(0 0 18px rgba(205,161,90,.25));
+  }
+  @keyframes holo{ to{ background-position:-220% center; } }
+
+  /* drifting hero grid */
+  .hero-grid{ animation:gridDrift 26s linear infinite; }
+  @keyframes gridDrift{ to{ background-position:56px 56px, 56px 56px; } }
+
+  /* pulsing brand dot */
+  .brand .dot{ animation:dotPulse 2.6s ease-in-out infinite; }
+  @keyframes dotPulse{
+    0%,100%{ box-shadow:0 0 0 4px var(--accent-tint); }
+    50%{ box-shadow:0 0 0 6px rgba(205,161,90,.06), 0 0 16px var(--accent); }
+  }
+
+  /* light-sweep buttons */
+  .btn{ position:relative; overflow:hidden; isolation:isolate; }
+  .btn::after{
+    content:""; position:absolute; top:0; left:-160%; width:55%; height:100%; z-index:-1;
+    background:linear-gradient(110deg, transparent, rgba(255,255,255,.35), transparent);
+    transform:skewX(-20deg); transition:left .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .btn:hover::after{ left:160%; }
+  .btn-primary:hover{ box-shadow:0 8px 30px rgba(205,161,90,.35); }
+  .btn-ghost:hover{ box-shadow:0 0 22px rgba(205,161,90,.12); }
+
+  /* glass + light-sweep cert cards */
+  .cert{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg, rgba(24,33,51,.66), rgba(19,26,41,.42));
+    backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  }
+  .cert::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(115deg, transparent 35%, rgba(230,190,116,.14) 50%, transparent 65%);
+    transform:translateX(-120%); transition:transform .65s cubic-bezier(.2,.7,.2,1);
+  }
+  .cert:hover::after{ transform:translateX(120%); }
+  .cert:hover{ box-shadow:0 14px 40px rgba(0,0,0,.4), 0 0 0 1px var(--accent); }
+
+  /* HUD corner brackets on the contact card */
+  .contact-card{ position:relative; overflow:hidden; }
+  .contact-card::before,
+  .contact-card::after{
+    content:""; position:absolute; width:26px; height:26px; opacity:.55; pointer-events:none;
+  }
+  .contact-card::before{ top:16px; left:16px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .contact-card::after{ bottom:16px; right:16px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  /* glowing animated eyebrow tick */
+  .eyebrow::before{ box-shadow:0 0 10px var(--accent); animation:tick 3s ease-in-out infinite; }
+  @keyframes tick{ 0%,100%{ width:26px; opacity:.7; } 50%{ width:38px; opacity:1; } }
+
+  /* ---------- hero command deck ---------- */
+  .hero-grid{ z-index:0; }
+  .hero-inner{
+    z-index:2; display:grid; grid-template-columns:1.05fr .95fr;
+    gap:clamp(30px,4.5vw,60px); align-items:center;
+  }
+  .hero-content{ min-width:0; }
+
+  /* status chip */
+  .hero-status{
+    display:inline-flex; align-items:center; gap:10px; margin:0 0 26px;
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--text-2); border:1px solid var(--line); border-radius:100px;
+    padding:7px 15px; background:rgba(19,26,41,.5);
+  }
+  .hero-status b{ color:var(--text); font-weight:500; }
+  .hero-status .live{
+    width:8px; height:8px; border-radius:50%; background:#46D27E; flex:none;
+    box-shadow:0 0 0 4px rgba(70,210,126,.12); animation:livePulse 2s ease-in-out infinite;
+  }
+  @keyframes livePulse{
+    0%,100%{ box-shadow:0 0 0 4px rgba(70,210,126,.12); }
+    50%{ box-shadow:0 0 0 6px rgba(70,210,126,.05), 0 0 12px rgba(70,210,126,.55); }
+  }
+
+  /* readable value line */
+  .hero-sub{
+    font-family:var(--body); font-size:clamp(1rem,1.5vw,1.12rem);
+    color:var(--text-2); line-height:1.65; max-width:44ch; margin:0 0 34px;
+  }
+  .hero-sub b{ color:var(--text); font-weight:600; }
+
+  /* stats rail */
+  .hero-stats{
+    display:grid; grid-template-columns:repeat(2,1fr); margin-top:36px;
+    border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    background:rgba(19,26,41,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  .hero-stat{ padding:15px 18px; border-top:1px solid var(--line-soft); border-left:1px solid var(--line-soft); }
+  .hero-stat:nth-child(-n+2){ border-top:none; }
+  .hero-stat:nth-child(odd){ border-left:none; }
+  .hero-stat .v{ font-family:var(--display); font-weight:600; font-size:1.3rem; letter-spacing:-.01em; color:var(--text); }
+  .hero-stat .v .em{ color:var(--accent); }
+  .hero-stat .l{ font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+
+  /* 3D console panel */
+  .hero-console{
+    position:relative; aspect-ratio:1 / 0.84;
+  }
+  .hero-canvas{
+    position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;
+    filter:drop-shadow(0 18px 30px rgba(205,161,90,.18));
+  }
+
+  @media (max-width:860px){
+    .hero-inner{ grid-template-columns:1fr; gap:38px; }
+    .hero-console{ aspect-ratio:16 / 10; max-height:360px; }
+  }
+
+  /* ---------- scroll reveal ---------- */
+  .io-reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1);
+  }
+  .io-reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- 3D tilt cards ---------- */
+  .tilt{ transform-style:preserve-3d; transition:transform .25s cubic-bezier(.2,.7,.2,1), border-color .18s ease; will-change:transform; }
 
   /* ---------- responsive ---------- */
   @media (max-width:780px){
@@ -288,11 +466,20 @@
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
     .reveal{ animation:none; opacity:1; transform:none; }
+    .io-reveal{ opacity:1; transform:none; }
+    .hero-canvas, .cursor-glow, .grain{ display:none; }
+    .hero h1 .em{ animation:none; }
+    .hero-grid, .brand .dot, .eyebrow::before{ animation:none; }
     *{ transition:none !important; }
   }
 </style>
 </head>
 <body>
+
+  <!-- futuristic overlays -->
+  <div class="scan-progress" id="scanProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- NAV -->
   <header class="nav">
@@ -313,23 +500,23 @@
   <section class="hero" id="top">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="wrap hero-inner">
-      <p class="tag reveal d1">
-        <span><b>Backend Lead</b></span>
-        <span>Senior Software Engineer</span>
-        <span>5+ years</span>
-        <span>Lahore, PK</span>
-      </p>
-      <h1 class="reveal d2">I design and ship <span class="em">production-grade .NET backends</span> for complex, real-world systems.</h1>
-      <p class="stack reveal d3">
-        <span>ASP.NET&nbsp;Core</span><span class="sep">/</span>
-        <span>.NET&nbsp;9</span><span class="sep">/</span>
-        <span>Microservices</span><span class="sep">/</span>
-        <span>Clean&nbsp;Architecture</span><span class="sep">/</span>
-        <span>OpenShift</span>
-      </p>
-      <div class="hero-actions reveal d4">
-        <a class="btn btn-primary" href="#work">View selected work</a>
-        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      <div class="hero-content">
+        <p class="hero-status reveal d1"><span class="live" aria-hidden="true"></span> Available — <b>Senior backend roles</b></p>
+        <h1 class="reveal d2">I design and ship <span class="em">production-grade .NET backends</span> for complex, real-world systems.</h1>
+        <p class="hero-sub reveal d3">Backend Lead with 5+ years architecting secure, well-governed <b>.NET 9 microservices</b> across government, fintech, and enterprise domains.</p>
+        <div class="hero-actions reveal d4">
+          <a class="btn btn-primary" href="#work">View selected work</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+        <div class="hero-stats reveal d4">
+          <div class="hero-stat"><div class="v">5<span class="em">+</span></div><div class="l">Years experience</div></div>
+          <div class="hero-stat"><div class="v">4</div><div class="l">Systems shipped</div></div>
+          <div class="hero-stat"><div class="v">.NET 9</div><div class="l">Core stack</div></div>
+          <div class="hero-stat"><div class="v">OpenShift</div><div class="l">Microservices</div></div>
+        </div>
+      </div>
+      <div class="hero-console reveal d3" aria-hidden="true">
+        <canvas class="hero-canvas"></canvas>
       </div>
     </div>
   </section>
@@ -661,7 +848,7 @@
           <a class="btn btn-ghost" href="https://linkedin.com/in/ZU3AIRE" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn btn-ghost" href="https://github.com/zubair-jamil" target="_blank" rel="noopener">GitHub</a>
         </div>
-        <p class="contact-phone"><span class="k">phone</span> &nbsp;+92 326 4652191</p>
+        <a class="contact-phone" href="tel:+923264652191"><span class="k">phone</span><span class="num">+92 326 4652191</span></a>
       </div>
     </div>
   </section>
@@ -673,6 +860,412 @@
       <span>Backend Lead · Senior Software Engineer</span>
     </div>
   </footer>
+
+  <!-- 3D + motion: Three.js loaded as a module; reveal/tilt run without it -->
+  <script type="importmap">
+  { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- scroll reveal (no dependencies) ---------- */
+    (function () {
+      if (reduce) return;
+
+      // Singular elements reveal on their own; grids/lists cascade per parent.
+      const plain = sel => document.querySelectorAll(sel).forEach(el => {
+        el.classList.add('io-reveal'); el.dataset.delay = '0';
+      });
+      const stagger = (sel, step = 90, cap = 540) => {
+        const seen = new Map();
+        document.querySelectorAll(sel).forEach(el => {
+          const p = el.parentElement;
+          const n = seen.get(p) || 0;
+          el.classList.add('io-reveal');
+          el.dataset.delay = Math.min(n * step, cap);
+          seen.set(p, n + 1);
+        });
+      };
+
+      plain('.section .eyebrow');
+      plain('.section .section-title');
+      plain('.section .lede');
+      plain('.about-body p');
+      plain('.contact-card');
+      stagger('.work-item', 120);
+      stagger('.tl-item', 90);
+      stagger('.lead-item', 70);
+      stagger('.skill-group', 80);
+      stagger('.cert', 80);
+      stagger('.edu-item', 90);
+      stagger('.edu-side-block', 90);
+
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.style.transitionDelay = (e.target.dataset.delay || 0) + 'ms';
+          e.target.classList.add('in');
+          obs.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+      document.querySelectorAll('.io-reveal').forEach(el => io.observe(el));
+    })();
+
+    /* ---------- 3D tilt on certification cards ---------- */
+    (function () {
+      if (reduce || matchMedia('(hover: none)').matches) return;
+      document.querySelectorAll('.cert').forEach(card => {
+        card.classList.add('tilt');
+        card.addEventListener('pointermove', e => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform =
+            `perspective(720px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg) translateZ(8px)`;
+        });
+        card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+      });
+    })();
+
+    /* ---------- scroll-progress beam ---------- */
+    (function () {
+      const bar = document.getElementById('scanProgress');
+      if (!bar) return;
+      const update = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      };
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      update();
+    })();
+
+    /* ---------- cursor spotlight ---------- */
+    (function () {
+      const glow = document.getElementById('cursorGlow');
+      if (!glow || reduce || matchMedia('(hover: none)').matches) return;
+      let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y, shown = false;
+      addEventListener('pointermove', e => {
+        x = e.clientX; y = e.clientY;
+        if (!shown) { glow.style.opacity = '1'; shown = true; }
+      });
+      (function follow() {
+        cx += (x - cx) * 0.14; cy += (y - cy) * 0.14;
+        glow.style.transform = `translate(${cx}px, ${cy}px)`;
+        requestAnimationFrame(follow);
+      })();
+    })();
+
+    /* ---------- magnetic buttons ---------- */
+    (function () {
+      if (reduce || matchMedia('(hover: none)').matches) return;
+      document.querySelectorAll('.btn, .nav-cta').forEach(btn => {
+        btn.style.transition = 'transform .2s cubic-bezier(.2,.7,.2,1)';
+        btn.addEventListener('pointermove', e => {
+          const r = btn.getBoundingClientRect();
+          const mx = (e.clientX - r.left) / r.width - 0.5;
+          const my = (e.clientY - r.top) / r.height - 0.5;
+          btn.style.transform = `translate(${(mx * 10).toFixed(1)}px, ${(my * 8).toFixed(1)}px)`;
+        });
+        btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+      });
+    })();
+
+    /* ---------- 3 rendered 3D elements (Three.js) ---------- */
+    if (!reduce) {
+      import('three').then(THREE => {
+        const canvas = document.querySelector('.hero-canvas');
+        const hero = canvas && canvas.parentElement;
+        if (!canvas || !hero) return;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setClearColor(0x000000, 0);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.25;
+        const maxAniso = renderer.capabilities.getMaxAnisotropy();
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+        camera.position.set(0, 8, 14.2);
+        camera.lookAt(0, 2.3, 0);
+
+        // lighting
+        scene.add(new THREE.AmbientLight(0x8793AB, 1.0));
+        const keyLight = new THREE.DirectionalLight(0xFFE6B0, 2.2);
+        keyLight.position.set(5, 9, 7);
+        scene.add(keyLight);
+        const rim = new THREE.PointLight(0xCDA15A, 1.6, 60);
+        rim.position.set(-6, 3, 5);
+        scene.add(rim);
+
+        // whole laptop — scaled in on load, parallax-rotated by mouse
+        const laptop = new THREE.Group();
+        scene.add(laptop);
+
+        const frameMat = new THREE.MeshStandardMaterial({ color: 0x10182a, roughness: 0.5, metalness: 0.45 });
+        const bodyMat  = new THREE.MeshStandardMaterial({ color: 0x141d30, roughness: 0.45, metalness: 0.55 });
+
+        // base deck — the keyboard half of the laptop
+        const DECK_W = 7.6;
+        const base = new THREE.Mesh(new THREE.BoxGeometry(DECK_W, 0.32, 5.6), bodyMat);
+        base.position.set(0, 0, 0.2);
+        laptop.add(base);
+
+        // trackpad — dark glass inset on the front of the deck
+        const trackpad = new THREE.Mesh(
+          new THREE.BoxGeometry(2.8, 0.06, 1.9),
+          new THREE.MeshStandardMaterial({ color: 0x070b13, roughness: 0.2, metalness: 0.6 })
+        );
+        trackpad.position.set(0, 0.19, 2.05);
+        laptop.add(trackpad);
+
+        /* ---- frameless screen on a hinged lid (live terminal via canvas texture) ---- */
+        const SCW = 512, SCH = 296, SDPR = 2;        // HD: 1024×592 backing buffer
+        const screenCv = document.createElement('canvas');
+        screenCv.width = SCW * SDPR; screenCv.height = SCH * SDPR;
+        const sx = screenCv.getContext('2d');
+        sx.scale(SDPR, SDPR);
+        const screenTex = new THREE.CanvasTexture(screenCv);
+        screenTex.colorSpace = THREE.SRGBColorSpace;
+        screenTex.anisotropy = maxAniso;
+        screenTex.generateMipmaps = false;
+        screenTex.minFilter = THREE.LinearFilter;
+
+        // lid pivots at the back edge of the base and opens on load
+        const lid = new THREE.Group();
+        lid.position.set(0, 0.16, -2.55);
+        laptop.add(lid);
+
+        const LID_W = DECK_W, LID_H = 4.2;
+        const lidPanel = new THREE.Mesh(new THREE.BoxGeometry(LID_W, LID_H, 0.16), frameMat);
+        lidPanel.position.set(0, LID_H / 2, 0);
+        lid.add(lidPanel);
+
+        // frameless screen — fills the lid to a hairline bezel
+        const screen = new THREE.Mesh(
+          new THREE.PlaneGeometry(LID_W - 0.18, LID_H - 0.18),
+          new THREE.MeshBasicMaterial({ map: screenTex, toneMapped: false })
+        );
+        screen.position.set(0, LID_H / 2, 0.09);
+        lid.add(screen);
+
+        const LID_OPEN = -0.22, LID_SHUT = 1.45;     // radians measured from upright
+        lid.rotation.x = LID_SHUT;
+
+        /* ---- realistic ANSI keyboard with labelled, pressable keys ---- */
+        const keyboard = new THREE.Group();
+        const U = 0.46, GAP = 0.06, REST_Y = 0.12, CAP_H = 0.24;
+        const allKeys = [];
+        const keyMap = new Map();
+
+        // tapered keycap geometry (top face narrower than the base)
+        function keycapGeo(w, d) {
+          const g = new THREE.BoxGeometry(w, CAP_H, d);
+          const p = g.attributes.position;
+          for (let i = 0; i < p.count; i++) {
+            if (p.getY(i) > 0) { p.setX(i, p.getX(i) * 0.82); p.setZ(i, p.getZ(i) * 0.82); }
+          }
+          p.needsUpdate = true; g.computeVertexNormals();
+          return g;
+        }
+
+        // crisp legend drawn to a canvas texture
+        function labelTex(text) {
+          const c = document.createElement('canvas'); c.width = c.height = 128;
+          const g = c.getContext('2d');
+          g.fillStyle = '#C9D2E3';
+          const fs = text.length <= 1 ? 72 : text.length <= 2 ? 48 : text.length <= 4 ? 34 : 26;
+          g.font = `600 ${fs}px ui-monospace, "IBM Plex Mono", monospace`;
+          g.textAlign = 'center'; g.textBaseline = 'middle';
+          g.fillText(text, 64, 66);
+          const t = new THREE.CanvasTexture(c);
+          t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = maxAniso;
+          return t;
+        }
+
+        function addKey(label, wU, x, z, regs) {
+          const w = wU * U - GAP, d = U - GAP;
+          const grp = new THREE.Group();
+          const body = new THREE.Mesh(keycapGeo(w, d), new THREE.MeshStandardMaterial({
+            color: 0x1b2434, roughness: 0.55, metalness: 0.25, emissive: 0xCDA15A, emissiveIntensity: 0
+          }));
+          grp.add(body);
+          if (label) {
+            const lbl = new THREE.Mesh(
+              new THREE.PlaneGeometry(w * 0.84, d * 0.84),
+              new THREE.MeshBasicMaterial({ map: labelTex(label), transparent: true, toneMapped: false })
+            );
+            lbl.rotation.x = -Math.PI / 2;
+            lbl.position.y = CAP_H / 2 + 0.002;
+            grp.add(lbl);
+          }
+          grp.position.set(x, REST_Y, z);
+          grp.userData = { restY: REST_Y, p: 0, mat: body.material };
+          allKeys.push(grp);
+          keyboard.add(grp);
+          (regs || []).forEach(k => keyMap.set(k, grp));
+          return grp;
+        }
+
+        // [label, widthUnits, ...keys to register for press]
+        const TOTAL_U = 15;
+        const layout = [
+          [['~',1,'`'],['1',1,'1'],['2',1,'2'],['3',1,'3'],['4',1,'4'],['5',1,'5'],['6',1,'6'],['7',1,'7'],['8',1,'8'],['9',1,'9'],['0',1,'0'],['-',1,'-'],['=',1,'='],['⌫',2,'BACKSPACE']],
+          [['Tab',1.5,'TAB'],['Q',1,'Q'],['W',1,'W'],['E',1,'E'],['R',1,'R'],['T',1,'T'],['Y',1,'Y'],['U',1,'U'],['I',1,'I'],['O',1,'O'],['P',1,'P'],['[',1,'['],[']',1,']'],['\\',1.5,'\\']],
+          [['Caps',1.75,'CAPS'],['A',1,'A'],['S',1,'S'],['D',1,'D'],['F',1,'F'],['G',1,'G'],['H',1,'H'],['J',1,'J'],['K',1,'K'],['L',1,'L'],[';',1,';'],["'",1,"'"],['Enter',2.25,'ENTER']],
+          [['Shift',2.25,'SHIFT'],['Z',1,'Z'],['X',1,'X'],['C',1,'C'],['V',1,'V'],['B',1,'B'],['N',1,'N'],['M',1,'M'],[',',1,','],['.',1,'.'],['/',1,'/'],['Shift',2.75,'RSHIFT']],
+          [['Ctrl',1.25,'CTRL'],['⌘',1.25,'META'],['Alt',1.25,'ALT'],['',6.25,' '],['Alt',1.25,'RALT'],['Fn',1.25,'FN'],['▤',1.25,'MENU'],['Ctrl',1.25,'RCTRL']]
+        ];
+
+        layout.forEach((row, r) => {
+          const z = (r - 2) * U;
+          let cursor = -TOTAL_U / 2 * U;
+          row.forEach(([label, wU, ...regs]) => {
+            addKey(label, wU, cursor + wU * U / 2, z, regs);
+            cursor += wU * U;
+          });
+        });
+
+        // keyboard sits flat in the back half of the base deck
+        keyboard.position.set(0, 0.17, -0.55);
+        keyboard.rotation.x = 0;
+        laptop.add(keyboard);
+
+        const pressKey = m => { if (m) m.userData.p = 1; };
+        const enterKey = keyMap.get('ENTER');
+        function pressChar(ch) {
+          let m = keyMap.get(ch.length === 1 ? ch.toUpperCase() : ch);
+          if (!m && ch === ' ') m = keyMap.get(' ');
+          if (!m) m = allKeys[Math.floor(Math.random() * allKeys.length)];
+          pressKey(m);
+        }
+
+        /* ---- auto-typing terminal ---- */
+        const script = [
+          '$ whoami',
+          'zubair jamil — backend lead',
+          '$ cat stack.txt',
+          '.net 9 · microservices · openshift',
+          '$ ./ship --prod',
+          'build ok > deploying...',
+          'systems online'
+        ];
+        let ti = 0, ci = 0, buffer = '', holdUntil = 0, lastType = 0;
+        let blink = false, lastBlink = 0, needsDraw = true;
+        const TYPE_MS = 78;
+
+        function drawScreen() {
+          const W = SCW, H = SCH;
+          sx.fillStyle = '#0A0F1A'; sx.fillRect(0, 0, W, H);
+          sx.fillStyle = '#131A29'; sx.fillRect(0, 0, W, 32);
+          ['#E6675B', '#E6B74A', '#46D27E'].forEach((c, i) => {
+            sx.fillStyle = c; sx.beginPath(); sx.arc(20 + i * 22, 16, 6, 0, 7); sx.fill();
+          });
+          sx.fillStyle = '#5E6B84'; sx.font = '13px monospace'; sx.textBaseline = 'middle';
+          sx.fillText('zubair@portfolio — zsh', 92, 17);
+
+          sx.font = '18px monospace'; sx.textBaseline = 'top';
+          const view = buffer.split('\n').slice(-8);
+          let y = 46;
+          view.forEach((ln, idx) => {
+            sx.fillStyle = ln.startsWith('$') ? '#E6BE74' : '#AEB8CC';
+            sx.fillText(ln, 16, y);
+            if (idx === view.length - 1 && blink) {
+              const w = sx.measureText(ln).width;
+              sx.fillStyle = '#E6BE74'; sx.fillRect(19 + w, y, 9, 18);
+            }
+            y += 25;
+          });
+          screenTex.needsUpdate = true;
+        }
+
+        function typeStep(t) {
+          if (t < holdUntil || t - lastType < TYPE_MS) return;
+          lastType = t;
+          const line = script[ti];
+          if (ci < line.length) {
+            const ch = line[ci++];
+            buffer += ch; pressChar(ch);
+          } else {
+            buffer += '\n'; ci = 0; ti++; pressKey(enterKey);
+            if (ti >= script.length) { ti = 0; buffer = ''; holdUntil = t + 1600; }
+            else holdUntil = t + 420;
+          }
+          needsDraw = true;
+        }
+
+        // real keystrokes depress the matching cap
+        const nameMap = { Enter: 'ENTER', Backspace: 'BACKSPACE', Tab: 'TAB', CapsLock: 'CAPS', Shift: 'SHIFT', Control: 'CTRL', Alt: 'ALT', Meta: 'META' };
+        addEventListener('keydown', e => {
+          if (e.key === ' ') pressKey(keyMap.get(' '));
+          else if (e.key.length === 1) pressChar(e.key);
+          else if (nameMap[e.key]) pressKey(keyMap.get(nameMap[e.key]));
+        });
+
+        // mouse parallax
+        let mx = 0, my = 0, tmx = 0, tmy = 0;
+        hero.addEventListener('pointermove', e => {
+          const r = hero.getBoundingClientRect();
+          tmx = (e.clientX - r.left) / r.width - 0.5;
+          tmy = (e.clientY - r.top) / r.height - 0.5;
+        });
+
+        function resize() {
+          const w = hero.clientWidth, h = hero.clientHeight;
+          renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+          renderer.setSize(w, h, false);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        }
+        resize();
+        addEventListener('resize', resize);
+
+        // load-in
+        const t0 = performance.now();
+        const INTRO = 900;
+        const easeOut = x => 1 - Math.pow(1 - x, 3);
+
+        let running = true;
+        document.addEventListener('visibilitychange', () => {
+          running = !document.hidden;
+          if (running) requestAnimationFrame(frame);
+        });
+
+        function frame(now) {
+          if (!running) return;
+          const t = now || performance.now();
+
+          const e = easeOut(Math.min(1, (t - t0) / INTRO));
+          laptop.scale.setScalar(0.6 + 0.4 * e);
+          laptop.position.y = (1 - e) * -2;
+          lid.rotation.x = LID_SHUT + (LID_OPEN - LID_SHUT) * e;
+
+          typeStep(t);
+          if (t - lastBlink > 530) { blink = !blink; lastBlink = t; needsDraw = true; }
+          if (needsDraw) { drawScreen(); needsDraw = false; }
+
+          for (let i = 0; i < allKeys.length; i++) {
+            const k = allKeys[i];
+            k.userData.p *= 0.82;
+            k.position.y = k.userData.restY - k.userData.p * 0.1;
+            k.userData.mat.emissiveIntensity = k.userData.p * 0.85;
+          }
+
+          mx += (tmx - mx) * 0.05;
+          my += (tmy - my) * 0.05;
+          laptop.rotation.y = mx * 0.4;
+          laptop.rotation.x = my * 0.12;
+
+          renderer.render(scene, camera);
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      }).catch(() => { /* offline / CDN blocked: hero stays as the CSS grid */ });
+    }
+  </script>
 
 </body>
 </html>
