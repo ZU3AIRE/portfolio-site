@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   pages: write
-  administration: write
+  contents: write
 jobs:
   set-domain:
     runs-on: ubuntu-latest
