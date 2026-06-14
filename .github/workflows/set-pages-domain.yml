@@ -1,0 +1,22 @@
+name: Set Pages Custom Domain
+on:
+  workflow_dispatch:
+
+jobs:
+  set-domain:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      administration: write
+    steps:
+      - name: Set Pages custom domain via API
+        run: |
+          curl -s -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/pages \
+            -d '{"cname":"zubair.is-a.dev","https_enforced":true}' \
+            | tee /tmp/pages-response.json
+          echo "Exit: $?"
+          cat /tmp/pages-response.json
