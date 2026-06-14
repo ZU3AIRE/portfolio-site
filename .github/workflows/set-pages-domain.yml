@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pages: write
-      administration: write
     steps:
       - name: Set Pages custom domain via API
         run: |
